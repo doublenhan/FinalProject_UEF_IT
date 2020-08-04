@@ -1,0 +1,1031 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebCKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="200" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="200" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="100" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+          <Property Name="FristName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="isActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="AccountRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Role" Type="int" Nullable="false" />
+          <Property Name="ID_Account" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="200" />
+          <Property Name="Contents" Type="nvarchar" MaxLength="200" />
+          <Property Name="Action" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Faculity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Faculity_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fanpage">
+          <Key>
+            <PropertyRef Name="ID_Fanpage" />
+          </Key>
+          <Property Name="ID_Fanpage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubTitle" Type="nvarchar" MaxLength="300" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FileUpload">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="400" />
+          <Property Name="FileUrl" Type="nvarchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="IndustryofFaculity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_IndustryofFaculity" Type="int" Nullable="false" />
+          <Property Name="ID_Faculity" Type="int" />
+          <Property Name="Industry_Name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Role_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Silde">
+          <Key>
+            <PropertyRef Name="ID_Silde" />
+          </Key>
+          <Property Name="ID_Silde" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="400" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MSSV" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Class" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="NumberPhone" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdentificationCard" Type="nvarchar" MaxLength="20" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateofBirth" Type="smalldatetime" />
+          <Property Name="DateBegin" Type="smalldatetime" />
+          <Property Name="ID_Faculity" Type="int" />
+          <Property Name="ID_IndustryofFaculity" Type="int" />
+          <Property Name="ID_Subject" Type="int" />
+          <Property Name="ID_Account" Type="int" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Subject" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SubjectName" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Contents" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ID_Teacher" Type="int" Nullable="false" />
+          <Property Name="DateBegin" Type="nvarchar" MaxLength="300" />
+          <Property Name="SubjectTarget" Type="nvarchar(max)" />
+          <Property Name="Result" Type="nvarchar(max)" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
+          <Property Name="Feedback" Type="nvarchar(max)" />
+          <Property Name="isSubmit" Type="bit" />
+          <Property Name="isDone" Type="bit" />
+          <Property Name="IDSubjectType" Type="int" />
+        </EntityType>
+        <EntityType Name="SubjectDetails">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Student" Type="int" Nullable="false" />
+          <Property Name="PrecentComplete" Type="int" />
+          <Property Name="ID_Subject" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SubjectType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="T_Subject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Subject" Type="nvarchar" MaxLength="20" />
+          <Property Name="T_SubjectName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Contents" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ID_Teacher" Type="int" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="isDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MSGV" Type="nvarchar" MaxLength="20" />
+          <Property Name="NumberPhone" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateofBirth" Type="smalldatetime" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateBegin" Type="smalldatetime" />
+          <Property Name="ID_Roles" Type="int" />
+          <Property Name="IdentificationCard" Type="nvarchar" MaxLength="20" />
+          <Property Name="ID_Account" Type="int" />
+        </EntityType>
+        <EntityType Name="TrackingPaper">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Contents" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="TrackingTime" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Student" Type="int" />
+          <Property Name="ID_Subject" Type="int" />
+          <Property Name="FileUpload" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK_AccountRole_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="1" />
+          <End Role="AccountRole" Type="Self.AccountRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountRole">
+              <PropertyRef Name="ID_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountRole_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+          <End Role="AccountRole" Type="Self.AccountRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountRole">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="ID_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_SubjectType">
+          <End Role="SubjectType" Type="Self.SubjectType" Multiplicity="0..1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="IDSubjectType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="ID_Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectDetails_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubjectDetails">
+              <PropertyRef Name="ID_Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectDetails_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+          <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubjectDetails">
+              <PropertyRef Name="ID_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Subject_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+          <End Role="T_Subject" Type="Self.T_Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_Subject">
+              <PropertyRef Name="ID_Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher_Account">
+          <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="ID_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackingPaper_Students">
+          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+          <End Role="TrackingPaper" Type="Self.TrackingPaper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TrackingPaper">
+              <PropertyRef Name="ID_Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackingPaper_Subject">
+          <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+          <End Role="TrackingPaper" Type="Self.TrackingPaper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TrackingPaper">
+              <PropertyRef Name="ID_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebCKModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountRole" EntityType="Self.AccountRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Error" EntityType="Self.Error" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faculity" EntityType="Self.Faculity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fanpage" EntityType="Self.Fanpage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FileUpload" EntityType="Self.FileUpload" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IndustryofFaculity" EntityType="Self.IndustryofFaculity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Silde" EntityType="Self.Silde" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubjectType" EntityType="Self.SubjectType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_Subject" EntityType="Self.T_Subject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrackingPaper" EntityType="Self.TrackingPaper" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccountRole_Account" Association="Self.FK_AccountRole_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="AccountRole" EntitySet="AccountRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountRole_Roles" Association="Self.FK_AccountRole_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="AccountRole" EntitySet="AccountRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Account" Association="Self.FK_Students_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_SubjectType" Association="Self.FK_Subject_SubjectType">
+            <End Role="SubjectType" EntitySet="SubjectType" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Teacher" Association="Self.FK_Subject_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Subject" EntitySet="Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectDetails_Students" Association="Self.FK_SubjectDetails_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectDetails_Subject" Association="Self.FK_SubjectDetails_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Subject_Teacher" Association="Self.FK_T_Subject_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="T_Subject" EntitySet="T_Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher_Account" Association="Self.FK_Teacher_Account">
+            <End Role="Account" EntitySet="Account" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackingPaper_Students" Association="Self.FK_TrackingPaper_Students">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="TrackingPaper" EntitySet="TrackingPaper" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackingPaper_Subject" Association="Self.FK_TrackingPaper_Subject">
+            <End Role="Subject" EntitySet="Subject" />
+            <End Role="TrackingPaper" EntitySet="TrackingPaper" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebCKModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="WebCKModel.Account" />
+          <EntitySet Name="AccountRoles" EntityType="WebCKModel.AccountRole" />
+          <EntitySet Name="Errors" EntityType="WebCKModel.Error" />
+          <EntitySet Name="Faculities" EntityType="WebCKModel.Faculity" />
+          <EntitySet Name="Fanpages" EntityType="WebCKModel.Fanpage" />
+          <EntitySet Name="FileUploads" EntityType="WebCKModel.FileUpload" />
+          <EntitySet Name="IndustryofFaculities" EntityType="WebCKModel.IndustryofFaculity" />
+          <EntitySet Name="Roles" EntityType="WebCKModel.Role" />
+          <EntitySet Name="Sildes" EntityType="WebCKModel.Silde" />
+          <EntitySet Name="Students" EntityType="WebCKModel.Student" />
+          <EntitySet Name="Subjects" EntityType="WebCKModel.Subject" />
+          <EntitySet Name="SubjectDetails" EntityType="WebCKModel.SubjectDetail" />
+          <EntitySet Name="sysdiagrams" EntityType="WebCKModel.sysdiagram" />
+          <EntitySet Name="T_Subject" EntityType="WebCKModel.T_Subject" />
+          <EntitySet Name="Teachers" EntityType="WebCKModel.Teacher" />
+          <EntitySet Name="TrackingPapers" EntityType="WebCKModel.TrackingPaper" />
+          <AssociationSet Name="FK_AccountRole_Account" Association="WebCKModel.FK_AccountRole_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="AccountRole" EntitySet="AccountRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Account" Association="WebCKModel.FK_Students_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Teacher_Account" Association="WebCKModel.FK_Teacher_Account">
+            <End Role="Account" EntitySet="Accounts" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountRole_Roles" Association="WebCKModel.FK_AccountRole_Roles">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="AccountRole" EntitySet="AccountRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectDetails_Students" Association="WebCKModel.FK_SubjectDetails_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="SubjectDetail" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackingPaper_Students" Association="WebCKModel.FK_TrackingPaper_Students">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="TrackingPaper" EntitySet="TrackingPapers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubjectDetails_Subject" Association="WebCKModel.FK_SubjectDetails_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="SubjectDetail" EntitySet="SubjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrackingPaper_Subject" Association="WebCKModel.FK_TrackingPaper_Subject">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="TrackingPaper" EntitySet="TrackingPapers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_Subject_Teacher" Association="WebCKModel.FK_T_Subject_Teacher">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="T_Subject" EntitySet="T_Subject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subject_Teacher" Association="WebCKModel.FK_Subject_Teacher">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <EntitySet Name="SubjectTypes" EntityType="WebCKModel.SubjectType" />
+          <AssociationSet Name="FK_Subject_SubjectType" Association="WebCKModel.FK_Subject_SubjectType">
+            <End Role="SubjectType" EntitySet="SubjectTypes" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FristName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <NavigationProperty Name="AccountRoles" Relationship="WebCKModel.FK_AccountRole_Account" FromRole="Account" ToRole="AccountRole" />
+          <NavigationProperty Name="Students" Relationship="WebCKModel.FK_Students_Account" FromRole="Account" ToRole="Student" />
+          <NavigationProperty Name="Teachers" Relationship="WebCKModel.FK_Teacher_Account" FromRole="Account" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="AccountRole">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Role" Type="Int32" Nullable="false" />
+          <Property Name="ID_Account" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="WebCKModel.FK_AccountRole_Account" FromRole="AccountRole" ToRole="Account" />
+          <NavigationProperty Name="Role" Relationship="WebCKModel.FK_AccountRole_Roles" FromRole="AccountRole" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Controller" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Action" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Faculity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Faculity_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Fanpage">
+          <Key>
+            <PropertyRef Name="ID_Fanpage" />
+          </Key>
+          <Property Name="ID_Fanpage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubTitle" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="FileUpload">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="FileName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="FileUrl" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="IndustryofFaculity">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_IndustryofFaculity" Type="Int32" Nullable="false" />
+          <Property Name="ID_Faculity" Type="Int32" />
+          <Property Name="Industry_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Role_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountRoles" Relationship="WebCKModel.FK_AccountRole_Roles" FromRole="Role" ToRole="AccountRole" />
+        </EntityType>
+        <EntityType Name="Silde">
+          <Key>
+            <PropertyRef Name="ID_Silde" />
+          </Key>
+          <Property Name="ID_Silde" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Image" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MSSV" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Class" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPhone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IdentificationCard" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="DateBegin" Type="DateTime" Precision="0" />
+          <Property Name="ID_Faculity" Type="Int32" />
+          <Property Name="ID_IndustryofFaculity" Type="Int32" />
+          <Property Name="ID_Subject" Type="Int32" />
+          <Property Name="ID_Account" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="WebCKModel.FK_Students_Account" FromRole="Student" ToRole="Account" />
+          <NavigationProperty Name="SubjectDetails" Relationship="WebCKModel.FK_SubjectDetails_Students" FromRole="Student" ToRole="SubjectDetail" />
+          <NavigationProperty Name="TrackingPapers" Relationship="WebCKModel.FK_TrackingPaper_Students" FromRole="Student" ToRole="TrackingPaper" />
+        </EntityType>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Teacher" Type="Int32" Nullable="false" />
+          <Property Name="DateBegin" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="SubjectTarget" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Result" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
+          <Property Name="Feedback" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SubjectDetails" Relationship="WebCKModel.FK_SubjectDetails_Subject" FromRole="Subject" ToRole="SubjectDetail" />
+          <NavigationProperty Name="TrackingPapers" Relationship="WebCKModel.FK_TrackingPaper_Subject" FromRole="Subject" ToRole="TrackingPaper" />
+          <NavigationProperty Name="Teacher" Relationship="WebCKModel.FK_Subject_Teacher" FromRole="Subject" ToRole="Teacher" />
+          <Property Name="isSubmit" Type="Boolean" />
+          <Property Name="isDone" Type="Boolean" />
+          <Property Name="IDSubjectType" Type="Int32" />
+          <NavigationProperty Name="SubjectType" Relationship="WebCKModel.FK_Subject_SubjectType" FromRole="Subject" ToRole="SubjectType" />
+        </EntityType>
+        <EntityType Name="SubjectDetail">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Student" Type="Int32" Nullable="false" />
+          <Property Name="PrecentComplete" Type="Int32" />
+          <Property Name="ID_Subject" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="WebCKModel.FK_SubjectDetails_Students" FromRole="SubjectDetail" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="WebCKModel.FK_SubjectDetails_Subject" FromRole="SubjectDetail" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="T_Subject">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Subject" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="T_SubjectName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Teacher" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="isDelete" Type="Boolean" />
+          <NavigationProperty Name="Teacher" Relationship="WebCKModel.FK_T_Subject_Teacher" FromRole="T_Subject" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MSGV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NumberPhone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateBegin" Type="DateTime" Precision="0" />
+          <Property Name="ID_Roles" Type="Int32" />
+          <Property Name="IdentificationCard" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Account" Type="Int32" />
+          <NavigationProperty Name="Account" Relationship="WebCKModel.FK_Teacher_Account" FromRole="Teacher" ToRole="Account" />
+          <NavigationProperty Name="T_Subject" Relationship="WebCKModel.FK_T_Subject_Teacher" FromRole="Teacher" ToRole="T_Subject" />
+          <NavigationProperty Name="Subjects" Relationship="WebCKModel.FK_Subject_Teacher" FromRole="Teacher" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="TrackingPaper">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Contents" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TrackingTime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Student" Type="Int32" />
+          <Property Name="ID_Subject" Type="Int32" />
+          <Property Name="FileUpload" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Student" Relationship="WebCKModel.FK_TrackingPaper_Students" FromRole="TrackingPaper" ToRole="Student" />
+          <NavigationProperty Name="Subject" Relationship="WebCKModel.FK_TrackingPaper_Subject" FromRole="TrackingPaper" ToRole="Subject" />
+        </EntityType>
+        <Association Name="FK_AccountRole_Account">
+          <End Type="WebCKModel.Account" Role="Account" Multiplicity="1" />
+          <End Type="WebCKModel.AccountRole" Role="AccountRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountRole">
+              <PropertyRef Name="ID_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Account">
+          <End Type="WebCKModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="WebCKModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="ID_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Teacher_Account">
+          <End Type="WebCKModel.Account" Role="Account" Multiplicity="0..1" />
+          <End Type="WebCKModel.Teacher" Role="Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Account">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="ID_Account" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountRole_Roles">
+          <End Type="WebCKModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="WebCKModel.AccountRole" Role="AccountRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AccountRole">
+              <PropertyRef Name="ID_Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectDetails_Students">
+          <End Type="WebCKModel.Student" Role="Student" Multiplicity="1" />
+          <End Type="WebCKModel.SubjectDetail" Role="SubjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubjectDetail">
+              <PropertyRef Name="ID_Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackingPaper_Students">
+          <End Type="WebCKModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="WebCKModel.TrackingPaper" Role="TrackingPaper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TrackingPaper">
+              <PropertyRef Name="ID_Student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubjectDetails_Subject">
+          <End Type="WebCKModel.Subject" Role="Subject" Multiplicity="1" />
+          <End Type="WebCKModel.SubjectDetail" Role="SubjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SubjectDetail">
+              <PropertyRef Name="ID_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrackingPaper_Subject">
+          <End Type="WebCKModel.Subject" Role="Subject" Multiplicity="0..1" />
+          <End Type="WebCKModel.TrackingPaper" Role="TrackingPaper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TrackingPaper">
+              <PropertyRef Name="ID_Subject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_Subject_Teacher">
+          <End Type="WebCKModel.Teacher" Role="Teacher" Multiplicity="0..1" />
+          <End Type="WebCKModel.T_Subject" Role="T_Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="T_Subject">
+              <PropertyRef Name="ID_Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subject_Teacher">
+          <End Type="WebCKModel.Teacher" Role="Teacher" Multiplicity="1" />
+          <End Type="WebCKModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="ID_Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SubjectType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Subjects" Relationship="WebCKModel.FK_Subject_SubjectType" FromRole="SubjectType" ToRole="Subject" />
+        </EntityType>
+        <Association Name="FK_Subject_SubjectType">
+          <End Type="WebCKModel.SubjectType" Role="SubjectType" Multiplicity="0..1" />
+          <End Type="WebCKModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubjectType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="IDSubjectType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebCKModelStoreContainer" CdmEntityContainer="DataEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="WebCKModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FristName" ColumnName="FristName" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountRoles">
+            <EntityTypeMapping TypeName="WebCKModel.AccountRole">
+              <MappingFragment StoreEntitySet="AccountRole">
+                <ScalarProperty Name="ID_Account" ColumnName="ID_Account" />
+                <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Errors">
+            <EntityTypeMapping TypeName="WebCKModel.Error">
+              <MappingFragment StoreEntitySet="Error">
+                <ScalarProperty Name="Action" ColumnName="Action" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faculities">
+            <EntityTypeMapping TypeName="WebCKModel.Faculity">
+              <MappingFragment StoreEntitySet="Faculity">
+                <ScalarProperty Name="Faculity_Name" ColumnName="Faculity_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fanpages">
+            <EntityTypeMapping TypeName="WebCKModel.Fanpage">
+              <MappingFragment StoreEntitySet="Fanpage">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SubTitle" ColumnName="SubTitle" />
+                <ScalarProperty Name="ID_Fanpage" ColumnName="ID_Fanpage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FileUploads">
+            <EntityTypeMapping TypeName="WebCKModel.FileUpload">
+              <MappingFragment StoreEntitySet="FileUpload">
+                <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndustryofFaculities">
+            <EntityTypeMapping TypeName="WebCKModel.IndustryofFaculity">
+              <MappingFragment StoreEntitySet="IndustryofFaculity">
+                <ScalarProperty Name="Industry_Name" ColumnName="Industry_Name" />
+                <ScalarProperty Name="ID_Faculity" ColumnName="ID_Faculity" />
+                <ScalarProperty Name="ID_IndustryofFaculity" ColumnName="ID_IndustryofFaculity" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="WebCKModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sildes">
+            <EntityTypeMapping TypeName="WebCKModel.Silde">
+              <MappingFragment StoreEntitySet="Silde">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ID_Silde" ColumnName="ID_Silde" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="WebCKModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="ID_Account" ColumnName="ID_Account" />
+                <ScalarProperty Name="ID_Subject" ColumnName="ID_Subject" />
+                <ScalarProperty Name="ID_IndustryofFaculity" ColumnName="ID_IndustryofFaculity" />
+                <ScalarProperty Name="ID_Faculity" ColumnName="ID_Faculity" />
+                <ScalarProperty Name="DateBegin" ColumnName="DateBegin" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="IdentificationCard" ColumnName="IdentificationCard" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="MSSV" ColumnName="MSSV" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="WebCKModel.Subject">
+              <MappingFragment StoreEntitySet="Subject">
+                <ScalarProperty Name="IDSubjectType" ColumnName="IDSubjectType" />
+                <ScalarProperty Name="isDone" ColumnName="isDone" />
+                <ScalarProperty Name="isSubmit" ColumnName="isSubmit" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="SubjectTarget" ColumnName="SubjectTarget" />
+                <ScalarProperty Name="DateBegin" ColumnName="DateBegin" />
+                <ScalarProperty Name="ID_Teacher" ColumnName="ID_Teacher" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="SubjectName" ColumnName="SubjectName" />
+                <ScalarProperty Name="ID_Subject" ColumnName="ID_Subject" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectDetails">
+            <EntityTypeMapping TypeName="WebCKModel.SubjectDetail">
+              <MappingFragment StoreEntitySet="SubjectDetails">
+                <ScalarProperty Name="ID_Subject" ColumnName="ID_Subject" />
+                <ScalarProperty Name="PrecentComplete" ColumnName="PrecentComplete" />
+                <ScalarProperty Name="ID_Student" ColumnName="ID_Student" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WebCKModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_Subject">
+            <EntityTypeMapping TypeName="WebCKModel.T_Subject">
+              <MappingFragment StoreEntitySet="T_Subject">
+                <ScalarProperty Name="isDelete" ColumnName="isDelete" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="ID_Teacher" ColumnName="ID_Teacher" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="T_SubjectName" ColumnName="T_SubjectName" />
+                <ScalarProperty Name="ID_Subject" ColumnName="ID_Subject" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="WebCKModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="ID_Account" ColumnName="ID_Account" />
+                <ScalarProperty Name="IdentificationCard" ColumnName="IdentificationCard" />
+                <ScalarProperty Name="ID_Roles" ColumnName="ID_Roles" />
+                <ScalarProperty Name="DateBegin" ColumnName="DateBegin" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
+                <ScalarProperty Name="MSGV" ColumnName="MSGV" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrackingPapers">
+            <EntityTypeMapping TypeName="WebCKModel.TrackingPaper">
+              <MappingFragment StoreEntitySet="TrackingPaper">
+                <ScalarProperty Name="FileUpload" ColumnName="FileUpload" />
+                <ScalarProperty Name="ID_Subject" ColumnName="ID_Subject" />
+                <ScalarProperty Name="ID_Student" ColumnName="ID_Student" />
+                <ScalarProperty Name="TrackingTime" ColumnName="TrackingTime" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Contents" ColumnName="Contents" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubjectTypes">
+            <EntityTypeMapping TypeName="WebCKModel.SubjectType">
+              <MappingFragment StoreEntitySet="SubjectType">
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

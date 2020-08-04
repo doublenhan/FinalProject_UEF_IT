@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="calender-area mg-tb-30">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="calender-inner">
+                    <div id='calendar'></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+            $(function () {
+                alertify.set('notifier', 'position', 'top-right');
+                var successMessage = '@TempData["SuccessMessage"]'
+                if (successMessage != '')
+                    alertify.success(successMessage);
+            });$(function () {
+                alertify.set('notifier', 'position', 'top-right');
+                var errorMessage = '@TempData["ErrorMessage"]'
+                if (errorMessage != '')
+                    alertify.error(errorMessage);
+            });
+            function Delete (id){
+                alertify.confirm('Hệ thống cảnh báo !', 'Bạn chắc chắn muốn xóa đề tài này ?', function () {
+                    window.location.href = '@Url.Action("Delete", "T_Subject")/' + id;
+                }, null )
+            }
+            $(document).ready(function () {
+                $("#datatab").DataTable();
+            })
+    </script>
+}

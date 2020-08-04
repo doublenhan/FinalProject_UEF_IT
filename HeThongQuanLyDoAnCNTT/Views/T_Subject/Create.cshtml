@@ -1,0 +1,98 @@
+﻿@model HeThongQuanLyDoAnCNTT.DataAccess.T_Subject
+
+@{
+    ViewBag.Title = "create";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="single-product-tab-area mg-tb-15">
+        <!-- Single pro tab review Start-->
+        <div class="single-pro-review-area">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="review-tab-pro-inner table-bordered">
+                            <ul id="myTab3" class="tab-review-design">
+                                <li class="active"><a href="#description"><i class="fa fa-pencil" aria-hidden="true"></i>Tạo mới đề tài giảng viên</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div class="input-group mg-b-pro-edt">
+                                                    <span class="input-group-addon"><i aria-hidden="true"><strong>Loại đề tài</strong></i></span>
+                                                    @if (ViewBag.SubjectType != null)
+                                                    {
+                                                        @Html.DropDownListFor(model => model.ID_Subject, ViewBag.SubjectType as SelectList, "--- Chọn loại đề tài ---", new { @class = "form-control" })
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div class="input-group mg-b-pro-edt">
+                                                    <span class="input-group-addon"><i aria-hidden="true"><strong>Tên đề tài</strong></i></span>
+                                                    <input type="text" class="form-control" placeholder="Tên đề tài....." name="T_SubjectName" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div class="input-group mg-b-pro-edt" required>
+                                                    <span class="input-group-addon"><i aria-hidden="true"><strong>Giới thiệu</strong></i></span>
+                                                    <textarea placeholder="Giới thiệu...." name="Contents" class="form-control" rows="5" style="resize:none"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="review-content-section">
+                                                <div class="input-group mg-b-pro-edt" required>
+                                                    <span class="input-group-addon"><i aria-hidden="true"><strong>Nội dung</strong></i></span>
+                                                    <textarea placeholder="Nội dung...." name="Description" class="form-control" rows="10" style="resize:none"></textarea>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="text-center mg-b-pro-edt custom-pro-edt-ds">
+                                                <button type="submit" class="btn btn-primary waves-effect waves-light m-r-10">
+                                                    Lưu
+                                                </button>
+                                                <button type="button" onclick="window.location.href='/T_Subject'" class="btn btn-success">
+                                                    Trở về
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+            $(function () {
+                alertify.set('notifier', 'position', 'top-right');
+                var warningMessage = '@TempData["WarningMessage"]'
+                if (warningMessage != '')
+                    alertify.alert("Lỗi hệ thống",warningMessage);
+            }); $(function () {
+                alertify.set('notifier', 'position', 'top-right');
+                var errorMessage = '@TempData["ErrorMessage"]'
+                if (errorMessage != '')
+                    alertify.error( errorMessage);
+            });
+            $(document).ready(function () {
+                $("#datatab").DataTable();
+            })
+    </script>
+}

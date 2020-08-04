@@ -1,0 +1,86 @@
+﻿@model IEnumerable<HeThongQuanLyDoAnCNTT.DataAccess.T_Subject>
+
+
+<div class="product-status mg-tb-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-status-wrap">
+                    <h4>DANH SÁCH ĐỀ TÀI GIẢNG VIÊN</h4>
+                    @if (User.IsInRole("Teacher") == true)
+                    {
+                        <div class="add-product">
+                            <a href="/T_Subject/Create">Thêm đề tài</a>
+                        </div>
+                    }
+                    <table id="table" data-toggle="table" data-pagination="true"
+                           data-search="true" data-show-columns="true"
+                           data-show-pagination-switch="true" data-show-refresh="true"
+                           data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                           data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                        <thead>
+                            <tr>
+                                <th data-field="state" data-checkbox="true"></th>
+                                <th data-field="tendetai">Tên đề tài</th>
+                                <th data-field="gioithieu1">Giới thiệu</th>
+                                <th data-field="gioithieu">Giảng Viên</th>
+                                <th data-field="trangthai">Trạng thái</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td><a href="/T_Subject/edit/@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.T_SubjectName)</a></td>
+                                    <td><a href="/T_Subject/edit/@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.Contents)</a></td>
+                                    <td><a href="/T_Subject/edit/@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.Teacher.FullName)</a></td>
+                                    <td><a>@Html.DisplayFor(modelItem => item.isActive)</a></td>
+
+                                    @if (User.IsInRole("Teacher") == true)
+                                    {
+                                        <td class="col-lg-1 col-sm-1 col-md-2 col-xs-12 fc-center bs-checkbox ">
+                                            <a title="xóa đề tài" class="btn btn-danger btn-sm rounded-0" onclick="return confirm('Bạn có chắc chắn muốn xoá đề tài này?')"
+                                               href="@Url.Action("Delete", "T_Subject", new { id = item.ID })"><i class="fa fa-trash"></i></a>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+            $(function () {
+                alertify.set('notifier', 'position', 'top-right');
+                var successMessage = '@TempData["SuccessMessage"]'
+                if (successMessage != '')
+                    alertify.success(successMessage);
+            });
+            $(function () {
+                alertify.set('notifier', 'position', 'top-right');
+                var warningMessage = '@TempData["WarningMessage"]'
+                if (warningMessage != '')
+                    alertify.success(warningMessage);
+            });
+            $(function () {
+                alertify.set('notifier', 'position', 'top-right');
+                var errorMessage = '@TempData["ErrorMessage"]'
+                if (errorMessage != '')
+                    alertify.error(errorMessage);
+            });
+            function Delete (id){
+                alertify.confirm('Hệ thống cảnh báo !', 'Bạn chắc chắn muốn xóa đề tài này ?', function () {
+                    window.location.href = '@Url.Action("Delete", "T_Subject")/' + id;
+                }, null )
+            }
+            $(document).ready(function () {
+                $("#datatab").DataTable();
+            })
+    </script>
+}

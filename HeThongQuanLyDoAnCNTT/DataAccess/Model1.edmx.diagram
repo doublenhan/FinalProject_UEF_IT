@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ac7ff848010148f2ae9bf1fee96ca6e9" Name="Diagram1" ZoomLevel="79">
+        <EntityTypeShape EntityType="WebCKModel.Account" Width="1.5" PointX="0.625" PointY="3.25" />
+        <EntityTypeShape EntityType="WebCKModel.AccountRole" Width="1.5" PointX="3.5" PointY="5.625" />
+        <EntityTypeShape EntityType="WebCKModel.Error" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WebCKModel.Faculity" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WebCKModel.Fanpage" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WebCKModel.FileUpload" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WebCKModel.IndustryofFaculity" Width="1.5" PointX="8.625" PointY="0.75" />
+        <EntityTypeShape EntityType="WebCKModel.Role" Width="1.5" PointX="3.625" PointY="8.125" />
+        <EntityTypeShape EntityType="WebCKModel.Silde" Width="1.5" PointX="12.125" PointY="0.75" />
+        <EntityTypeShape EntityType="WebCKModel.Student" Width="1.5" PointX="0.875" PointY="8.125" />
+        <EntityTypeShape EntityType="WebCKModel.Subject" Width="1.5" PointX="7.875" PointY="8.25" />
+        <EntityTypeShape EntityType="WebCKModel.SubjectDetail" Width="1.5" PointX="4.5" PointY="10.625" />
+        <EntityTypeShape EntityType="WebCKModel.sysdiagram" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="WebCKModel.T_Subject" Width="1.5" PointX="8.375" PointY="3" />
+        <EntityTypeShape EntityType="WebCKModel.Teacher" Width="1.5" PointX="5.625" PointY="3" />
+        <EntityTypeShape EntityType="WebCKModel.TrackingPaper" Width="1.5" PointX="1.125" PointY="13" />
+        <AssociationConnector Association="WebCKModel.FK_AccountRole_Account" />
+        <AssociationConnector Association="WebCKModel.FK_Students_Account" />
+        <AssociationConnector Association="WebCKModel.FK_Teacher_Account" />
+        <AssociationConnector Association="WebCKModel.FK_AccountRole_Roles" />
+        <AssociationConnector Association="WebCKModel.FK_SubjectDetails_Students" />
+        <AssociationConnector Association="WebCKModel.FK_TrackingPaper_Students" />
+        <AssociationConnector Association="WebCKModel.FK_SubjectDetails_Subject" />
+        <AssociationConnector Association="WebCKModel.FK_TrackingPaper_Subject" />
+        <AssociationConnector Association="WebCKModel.FK_T_Subject_Teacher" />
+        <AssociationConnector Association="WebCKModel.FK_Subject_Teacher" />
+        <EntityTypeShape EntityType="WebCKModel.SubjectType" Width="1.5" PointX="10.375" PointY="5.875" />
+        <AssociationConnector Association="WebCKModel.FK_Subject_SubjectType" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

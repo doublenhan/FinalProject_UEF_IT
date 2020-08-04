@@ -1,0 +1,74 @@
+﻿@model IEnumerable<HeThongQuanLyDoAnCNTT.DataAccess.TrackingPaper>
+
+<div class="product-status mg-tb-15">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="product-status-wrap">
+                    <h4>DANH SÁCH NỘP BÁO CÁO </h4>
+                    @if (User.IsInRole("Student") == true)
+                    {
+                        <div class="add-product">
+                            <a href="/TrackingPapers/Create">Thêm đề tài</a>
+                        </div>
+                    }
+                    <table id="table" data-toggle="table" data-pagination="true"
+                           data-search="true" data-show-columns="true"
+                           data-show-pagination-switch="true" data-show-refresh="true"
+                           data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                           data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                        <thead>
+                            <tr>
+                                <th data-field="state" data-checkbox="true"></th>
+                                <th data-field="madetai">Họ tên</th>
+                                <th data-field="tendetai">Tên đề tài</th>
+                                <th data-field="gioithieu">Tiêu đề báo cáo</th>
+                                <th data-field="gioithieu2">Tải File</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td></td>
+                                    <td><a href="/TrackingPapers/edit/@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.Student.FullName)</a></td>
+                                    <td><a href="/TrackingPapers/edit/@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.Subject.SubjectName)</a></td>
+                                    <td><a href="/TrackingPapers/edit/@Html.DisplayFor(modelItem => item.ID)">@Html.DisplayFor(modelItem => item.Contents)</a></td>
+                                    <td><a href="@Url.Action("Download", "TrackingPapers", new { fileName = item.FileUpload })"> @Html.DisplayFor(modelItem => item.FileUpload)</a></td>
+                                    @if (User.IsInRole("Student") == true)
+                                    {
+                                        <td class="col-lg-1 col-sm-1 col-md-2 col-xs-12 fc-center bs-checkbox ">
+                                            <button data-toggle="tooltip" title="xóa đề tài" class="pd-setting-ed" onclick="Delete(@item.ID)">
+                                                <a><i class="fa fa-dropbox" aria-hidden="true"></i></a>
+                                            </button>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script>
+            $(function () {
+                alertify.set('notifier', 'position', 'top-right');
+                var successMessage = '@TempData["SuccessMessage"]'
+                if (successMessage != '')
+                    alertify.success(successMessage);
+            });
+            function Delete (id){
+                alertify.confirm('Hệ thống cảnh báo !', 'Bạn chắc chắn muốn xóa đề tài này ?', function () {
+                    window.location.href = '@Url.Action("Delete", "TrackingPapers")/' + id;
+                }, null )
+            }
+            $(document).ready(function () {
+                $("#datatab").DataTable();
+            })
+
+    </script>
+}

@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebCKModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="PassWord" Type="nvarchar" MaxLength="200" />
+    <Property Name="Salt" Type="nvarchar" MaxLength="200" />
+    <Property Name="Image" Type="nvarchar(max)" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="100" />
+    <Property Name="Type" Type="nvarchar" MaxLength="100" />
+    <Property Name="FristName" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+    <Property Name="isActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="AccountRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Role" Type="int" Nullable="false" />
+    <Property Name="ID_Account" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Error">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="200" />
+    <Property Name="Contents" Type="nvarchar" MaxLength="200" />
+    <Property Name="Action" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Faculity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Faculity_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Fanpage">
+    <Key>
+      <PropertyRef Name="ID_Fanpage" />
+    </Key>
+    <Property Name="ID_Fanpage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubTitle" Type="nvarchar" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FileUpload">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="400" />
+    <Property Name="FileUrl" Type="nvarchar" MaxLength="400" />
+  </EntityType>
+  <EntityType Name="IndustryofFaculity">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_IndustryofFaculity" Type="int" Nullable="false" />
+    <Property Name="ID_Faculity" Type="int" />
+    <Property Name="Industry_Name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role_Name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Silde">
+    <Key>
+      <PropertyRef Name="ID_Silde" />
+    </Key>
+    <Property Name="ID_Silde" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="400" />
+    <Property Name="Link" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MSSV" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Class" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="NumberPhone" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="IdentificationCard" Type="nvarchar" MaxLength="20" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateofBirth" Type="smalldatetime" />
+    <Property Name="DateBegin" Type="smalldatetime" />
+    <Property Name="ID_Faculity" Type="int" />
+    <Property Name="ID_IndustryofFaculity" Type="int" />
+    <Property Name="ID_Subject" Type="int" />
+    <Property Name="ID_Account" Type="int" />
+  </EntityType>
+  <EntityType Name="Subject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Subject" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SubjectName" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Contents" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ID_Teacher" Type="int" Nullable="false" />
+    <Property Name="DateBegin" Type="nvarchar" MaxLength="300" />
+    <Property Name="SubjectTarget" Type="nvarchar(max)" />
+    <Property Name="Result" Type="nvarchar(max)" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="isDelete" Type="bit" />
+    <Property Name="Feedback" Type="nvarchar(max)" />
+    <Property Name="isSubmit" Type="bit" />
+    <Property Name="isDone" Type="bit" />
+    <Property Name="IDSubjectType" Type="int" />
+  </EntityType>
+  <EntityType Name="SubjectDetails">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Student" Type="int" Nullable="false" />
+    <Property Name="PrecentComplete" Type="int" />
+    <Property Name="ID_Subject" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SubjectType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="T_Subject">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Subject" Type="nvarchar" MaxLength="20" />
+    <Property Name="T_SubjectName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Contents" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="ID_Teacher" Type="int" />
+    <Property Name="isActive" Type="bit" />
+    <Property Name="isDelete" Type="bit" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MSGV" Type="nvarchar" MaxLength="20" />
+    <Property Name="NumberPhone" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateofBirth" Type="smalldatetime" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="DateBegin" Type="smalldatetime" />
+    <Property Name="ID_Roles" Type="int" />
+    <Property Name="IdentificationCard" Type="nvarchar" MaxLength="20" />
+    <Property Name="ID_Account" Type="int" />
+  </EntityType>
+  <EntityType Name="TrackingPaper">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Contents" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="TrackingTime" Type="varchar" MaxLength="50" />
+    <Property Name="ID_Student" Type="int" />
+    <Property Name="ID_Subject" Type="int" />
+    <Property Name="FileUpload" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <Association Name="FK_AccountRole_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="1" />
+    <End Role="AccountRole" Type="Self.AccountRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AccountRole">
+        <PropertyRef Name="ID_Account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AccountRole_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="AccountRole" Type="Self.AccountRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AccountRole">
+        <PropertyRef Name="ID_Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Students_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Students" Type="Self.Students" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Students">
+        <PropertyRef Name="ID_Account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_SubjectType">
+    <End Role="SubjectType" Type="Self.SubjectType" Multiplicity="0..1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubjectType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="IDSubjectType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subject_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+    <End Role="Subject" Type="Self.Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="ID_Teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectDetails_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubjectDetails">
+        <PropertyRef Name="ID_Student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubjectDetails_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="1" />
+    <End Role="SubjectDetails" Type="Self.SubjectDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SubjectDetails">
+        <PropertyRef Name="ID_Subject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_Subject_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="T_Subject" Type="Self.T_Subject" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="T_Subject">
+        <PropertyRef Name="ID_Teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teacher_Account">
+    <End Role="Account" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Teacher">
+        <PropertyRef Name="ID_Account" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrackingPaper_Students">
+    <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
+    <End Role="TrackingPaper" Type="Self.TrackingPaper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TrackingPaper">
+        <PropertyRef Name="ID_Student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrackingPaper_Subject">
+    <End Role="Subject" Type="Self.Subject" Multiplicity="0..1" />
+    <End Role="TrackingPaper" Type="Self.TrackingPaper" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TrackingPaper">
+        <PropertyRef Name="ID_Subject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WebCKModelStoreContainer">
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountRole" EntityType="Self.AccountRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Error" EntityType="Self.Error" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Faculity" EntityType="Self.Faculity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Fanpage" EntityType="Self.Fanpage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileUpload" EntityType="Self.FileUpload" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IndustryofFaculity" EntityType="Self.IndustryofFaculity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Silde" EntityType="Self.Silde" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subject" EntityType="Self.Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectDetails" EntityType="Self.SubjectDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubjectType" EntityType="Self.SubjectType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="T_Subject" EntityType="Self.T_Subject" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrackingPaper" EntityType="Self.TrackingPaper" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AccountRole_Account" Association="Self.FK_AccountRole_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="AccountRole" EntitySet="AccountRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AccountRole_Roles" Association="Self.FK_AccountRole_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="AccountRole" EntitySet="AccountRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Students_Account" Association="Self.FK_Students_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Students" EntitySet="Students" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_SubjectType" Association="Self.FK_Subject_SubjectType">
+      <End Role="SubjectType" EntitySet="SubjectType" />
+      <End Role="Subject" EntitySet="Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subject_Teacher" Association="Self.FK_Subject_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Subject" EntitySet="Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectDetails_Students" Association="Self.FK_SubjectDetails_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubjectDetails_Subject" Association="Self.FK_SubjectDetails_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="SubjectDetails" EntitySet="SubjectDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_Subject_Teacher" Association="Self.FK_T_Subject_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="T_Subject" EntitySet="T_Subject" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teacher_Account" Association="Self.FK_Teacher_Account">
+      <End Role="Account" EntitySet="Account" />
+      <End Role="Teacher" EntitySet="Teacher" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrackingPaper_Students" Association="Self.FK_TrackingPaper_Students">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="TrackingPaper" EntitySet="TrackingPaper" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrackingPaper_Subject" Association="Self.FK_TrackingPaper_Subject">
+      <End Role="Subject" EntitySet="Subject" />
+      <End Role="TrackingPaper" EntitySet="TrackingPaper" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
