@@ -13,6 +13,23 @@
                             <a href="/T_Subject/Create">Thêm đề tài</a>
                         </div>
                     }
+                    else
+                    {
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="review-content-section">
+                                <select name="TeacherID" class="form-control" id="ID_Teacher">
+                                    <option value="@null">Tất cả giảng viên</option>
+                                    @foreach (var item in ViewBag.LstTeacherName)
+                                    {
+                                        <option value="@item.ID">@item.FullName</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="/T_Subject/Index?$('#ID_Teacher').val()">abc</a>
+                        </div>
+                    }
                     <table id="table" data-toggle="table" data-pagination="true"
                            data-search="true" data-show-columns="true"
                            data-show-pagination-switch="true" data-show-refresh="true"
@@ -55,6 +72,7 @@
     </div>
 </div>
 @section scripts{
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
             $(function () {
                 alertify.set('notifier', 'position', 'top-right');
@@ -77,10 +95,15 @@
             function Delete (id){
                 alertify.confirm('Hệ thống cảnh báo !', 'Bạn chắc chắn muốn xóa đề tài này ?', function () {
                     window.location.href = '@Url.Action("Delete", "T_Subject")/' + id;
-                }, null )
-            }
-            $(document).ready(function () {
-                $("#datatab").DataTable();
+            }, null)
+        };
+        $(document).ready(function () {
+            $("#ID_Teacher").change(function () {
+                $.get("/T_Subject/GetSubjectList", { ID: $("#ID_Teacher").val() }, function (data) {
+
+                })
             })
+            $("#datatab").DataTable();
+        });
     </script>
 }

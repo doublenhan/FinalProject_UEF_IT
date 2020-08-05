@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using HeThongQuanLyDoAnCNTT.CustomAuthentication;
 using HeThongQuanLyDoAnCNTT.DataAccess;
+using System.Data.SqlClient;
 
 namespace HeThongQuanLyDoAnCNTT.Controllers
 {
@@ -27,7 +28,7 @@ namespace HeThongQuanLyDoAnCNTT.Controllers
 
         [CustomAuthorize(Roles = "Teacher,Student,Secretary,HeaderFaulity")]
         // GET: T_Subject
-        public ActionResult Index()
+        public ActionResult Index(int ?TeacherID, string SubjectID, string SubjectName)
         {
             if (CurrentUser.IsInRole("Teacher") == true)
             {
@@ -36,8 +37,8 @@ namespace HeThongQuanLyDoAnCNTT.Controllers
             }
             if (CurrentUser.IsInRole("Student") == true)
             {
-                var CheckID = db.T_Subject.Where(s => s.isActive == true && s.isDelete != true);
-                return View(CheckID.ToList());
+                GetTeacherList();
+                return View(SearchSubject(TeacherID,SubjectID,SubjectName));
             }
             else
             {
@@ -169,6 +170,33 @@ namespace HeThongQuanLyDoAnCNTT.Controllers
                 return RedirectToAction("Index");
             }
             return RedirectToAction("PageNotFound", "Error");
+        }
+        #endregion
+
+        #region Tìm kiếm đề tài
+        public void GetTeacherList()
+        {
+            List<Teacher> LstTeacher = db.Teachers.ToList();
+            ViewBag.LstTeacherName = /*new SelectList(LstTeacher, "ID", "FullName")*/db.Teachers.ToList();
+        }
+        public List<T_Subject> SearchSubject(int ?IDTeacher, string IDSubject, string SubjectName)
+        {
+            List<T_Subject> LstTSubject = new List<T_Subject>();
+            string SQLQuery = "Select * from T_Subject Where (isDelete = 0 or isDelete is null) and isactive = 1";
+            if(IDTeacher != null)
+            {
+                SQLQuery += " and ID_Teacher = " + IDTeacher;
+            }
+            if(IDSubject != null)
+            {
+                SQLQuery += " and ID_Subject like '" + IDSubject + "%'";
+            }
+            if(SubjectName != null)
+            {
+                SQLQuery += " and T_SubjectName like '" + SubjectName + "%'";
+            }
+            LstTSubject = db.T_Subject.SqlQuery(SQLQuery).ToList();
+            return LstTSubject;
         }
         #endregion
 
