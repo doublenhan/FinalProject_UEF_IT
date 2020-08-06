@@ -126,11 +126,26 @@
         #endregion
 
         #region Thêm đề tài dựa trên đề tài có sẵn
+        public bool SubjectAvaiable(Subject sub)
+        {
+            bool Result = false;
+            if (sub != null)
+            {
+                if(sub.isDelete == true)
+                {
+                    Result = true;
+                }
+            }
+            else
+            {
+                Result = true;
+            }
+            return Result;
+        }
         public ActionResult CreateExist()
         {
             if (!IsStudentDoingSubject())
             {
-
                 ViewBag.TeacherSubject = new SelectList(GetListSubjectEnable(), "ID_Subject", "T_SubjectName");
                 return View();
             }
@@ -143,49 +158,52 @@
         {
             if (subject.ID_Subject != null)
             {
-                if (db.Subjects.FirstOrDefault(s => s.ID_Subject == subject.ID_Subject && s.isDelete != true) == null)
+                Subject findsubject = db.Subjects.FirstOrDefault(s => s.ID_Subject == subject.ID_Subject);
+                SubjectDetail Detail = new SubjectDetail();
+                Student CurrentStudent = db.Students.FirstOrDefault(s => s.ID_Account == CurrentUser.ID);
+                T_Subject TSubject = db.T_Subject.FirstOrDefault(s => s.ID_Subject == subject.ID_Subject);
+
+                if (SubjectAvaiable(findsubject)) /* Tạo mới subject nếu nó đã bị xóa */
                 {
-                    T_Subject TSubjectDetail = db.T_Subject.FirstOrDefault(s => s.ID_Subject == subject.ID_Subject);
-                    /* Lấy giá trị tên của đề tài đã được chọn */
-                    subject.SubjectName = TSubjectDetail.T_SubjectName;
-                    /* Lấy giá trị ngày tháng năm hiện tại */
+                    subject.SubjectName = TSubject.T_SubjectName;
                     subject.DateBegin = month + "/" + day + "/" + year;
-                    /* Lấy giá trị ID của giảng viên đang sở hữu đề tài */
-                    subject.ID_Teacher = int.Parse(TSubjectDetail.ID_Teacher.ToString());
+                    subject.ID_Teacher = int.Parse(TSubject.ID_Teacher.ToString());
                     subject.IDSubjectType = 1;
                     subject.isActive = true;
+
+                    TSubject.isActive = false;
                     if (ModelState.IsValid)
                     {
                         db.Subjects.Add(subject);
                         db.SaveChanges();
+                        CurrentStudent.ID_Subject = subject.ID;
+                        db.SaveChanges();
+                    }
+
+                    Detail.ID_Student = CurrentStudent.ID;
+                    Detail.ID_Subject = subject.ID;
+                    Detail.PrecentComplete = 0;
+                    if (ModelState.IsValid)
+                    {
+                        db.SubjectDetails.Add(Detail);
+                        db.SaveChanges();
                     }
                 }
-                SubjectDetail Detail = new SubjectDetail();
-                Detail.ID_Subject = db.Subjects.FirstOrDefault(s=>s.ID_Subject==subject.ID_Subject).ID;
-                Detail.ID_Student = db.Students.FirstOrDefault(student => student.ID_Account == CurrentUser.ID).ID;
-                Detail.PrecentComplete = 0;
-                Student CurrentStudent = db.Students.FirstOrDefault(s=>s.ID_Account==CurrentUser.ID);
-                CurrentStudent.ID_Subject = Detail.ID_Subject;
-                if (ModelState.IsValid)
+                else if (findsubject.isSubmit != true) /* Nếu đề tài đã được người khác đăng ký nhưng chưa submit thì có thể đăng ký chung nhóm */
                 {
-                    db.SubjectDetails.Add(Detail);
-                    db.SaveChanges();
-                }
-                T_Subject TeacherSubject = db.T_Subject.Find(subject.ID_Subject);
-                TeacherSubject.isActive = false;
-                db.SaveChanges();
-                /* Gửi Email thông báo */
-                {
-                    Uri SubjectURL = new Uri("https://localhost:44351/Subjects/edit/" + subject.ID);
-                    string Mail = GetCurrentStudent().Email;
-                    string MailSubject = "Mail thông báo đăng ký đề tài thành công";
-                    string MailBody = string.Format("Dear {0},\n\tChúc mừng bạn đã đăng ký đề tài thành công\n\tTên đề tài: {1}\n\tGiảng viên hướng dẫn: {2}\n\tLink đề tài:\n\n\tThanks and Best Regards", CurrentUser.FirstName, subject.SubjectName, /*TeacherName*/ SubjectURL);
-                    Mail NewEmail = new Mail(Mail, MailSubject, MailBody);
-                    NewEmail.SendMail();
+                    Detail.ID_Subject = findsubject.ID;
+                    Detail.ID_Student = CurrentStudent.ID;
+                    Detail.PrecentComplete = 0;
+
+                    CurrentStudent.ID_Subject = subject.ID;
+                    if (ModelState.IsValid)
+                    {
+                        db.SubjectDetails.Add(Detail);
+                        db.SaveChanges();
+                    }
                 }
                 return RedirectToAction("Index");
             }
-            
             return RedirectToAction("CreateExist");
         }
         #endregion
@@ -195,8 +213,7 @@
         {
             if (!IsStudentDoingSubject())
             {
-                List<Teacher> LstTeacher = db.Teachers.ToList();
-                ViewBag.LstTeacherName = new SelectList(LstTeacher, "ID", "FullName");
+                GetTeacherList();
                 return View();
             }
             return RedirectToAction("Index");
@@ -366,6 +383,14 @@
                 return HttpNotFound();
             }
             return RedirectToAction("PageNotFound","Error");
+        }
+        #endregion
+
+        #region Tìm kiếm đề tài
+        public void GetTeacherList ()
+        {
+            List<Teacher> LstTeacher = db.Teachers.ToList();
+            ViewBag.LstTeacherName = new SelectList(LstTeacher, "ID", "FullName");
         }
         #endregion
 

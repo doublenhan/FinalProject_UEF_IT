@@ -62,8 +62,13 @@ namespace HeThongQuanLyDoAnCNTT.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
-            
+            int ID_Student = db.Students.SingleOrDefault(student => student.ID_Account == CurrentUser.ID).ID;
+            if (CheckSubjectID(db.SubjectDetails.FirstOrDefault(subject => subject.ID_Student == ID_Student).ID_Subject))
+            {
+                return View();
+            }
+            TempData["WarningMessage"] = "Đề tài chưa được kiểm duyệt hoặc đã hoàn thành, không thể nộp báo cáo!";
+            return RedirectToAction("Index");
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -112,6 +117,13 @@ namespace HeThongQuanLyDoAnCNTT.Controllers
                 ViewBag.FileUpload = "Chọn file đính kèm";
             }
             return View(trackingPaper);
+        }
+        #endregion
+
+        #region Kiểm tra mã đề tài
+        public bool CheckSubjectID (int ?SubjectID)
+        {
+            return db.Subjects.FirstOrDefault(s => s.ID == SubjectID && s.isSubmit == true && s.isDone != true) != null;
         }
         #endregion
 
